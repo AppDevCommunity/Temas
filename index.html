@@ -6,7 +6,7 @@
 
 <body ng-app='StandupApp'>
 
-<div class="community-standup-header"></div>
+<community-standup-header titulo="Community Standup Angular Js"></community-standup-header>
 
 </body>
 
@@ -25,7 +25,10 @@ angular.module('StandupApp',['Dependencia1','Dependencia2']);
 angular.module('StandupApp').directive('communityStandupHeader',function(){
 	return {
 			restrict:'EACM',
-			template:"<h1>Community Standup Angular Js</h1>"
+			template:"<h1>{{titulo}}</h1>",
+            scope:{
+                titulo:'@'
+            }
 	}
 });
 
