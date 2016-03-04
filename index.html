@@ -27,15 +27,17 @@ angular.module('Dependencia2',[]);
 
 angular.module('StandupApp',['Dependencia1','Dependencia2']);
 
-angular.module('StandupApp').service('ServicioTituloDeHeader',function(){
+angular.module('StandupApp').factory('ServicioTituloDeHeader',function(){
     
     var nombreDePresentacion=" Angular Js";
 
 	var titulo="Community Standup";
     
-    this.Titulo=function(){
+    return {
+        Titulo:function(){
             return titulo + nombreDePresentacion;
-        }    
+        }   
+    } 
 })
 
 angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope','ServicioTituloDeHeader',function($scope,servicioTituloDeHeader){
