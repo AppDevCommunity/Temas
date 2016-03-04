@@ -28,14 +28,20 @@ angular.module('StandupApp',['Dependencia1','Dependencia2']);
 
 angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope',function($scope){
 
-	$scope.titulo="Community Standup Angular Js";
+	var nombreDePresentacion=" Angular Js";
+
+	var titulo="Community Standup";
+
+	$scope.titulo=function(){
+		return titulo + nombreDePresentacion;
+	}
 
 }]);
 
 angular.module('StandupApp').directive('communityStandupHeader',function(){
 	return {
 			restrict:'EACM',
-			template:"<h1>{{titulo}}</h1>"
+			template:"<h1>{{titulo()}}</h1>"
 	}
 });
 
