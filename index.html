@@ -33,11 +33,9 @@ angular.module('StandupApp').service('ServicioTituloDeHeader',function(){
 
 	var titulo="Community Standup";
     
-    return {
-        Titulo:function(){
+    this.Titulo=function(){
             return titulo + nombreDePresentacion;
-        }
-    }
+        }    
 })
 
 angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope','ServicioTituloDeHeader',function($scope,servicioTituloDeHeader){
