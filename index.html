@@ -1,16 +1,17 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 
 <body ng-app='StandupApp'>
 
-<div ng-controller="ControladorHeaderCommunityStandup">
+    <div ng-controller="ControladorHeaderCommunityStandup">
 
-<community-standup-header></community-standup-header>
+        <community-standup-header></community-standup-header>
 
-</div>
+    </div>
 
 </body>
 
@@ -26,14 +27,23 @@ angular.module('Dependencia2',[]);
 
 angular.module('StandupApp',['Dependencia1','Dependencia2']);
 
-angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope',function($scope){
-
-	var nombreDePresentacion=" Angular Js";
+angular.module('StandupApp').service('ServicioTituloDeHeader',function(){
+    
+    var nombreDePresentacion=" Angular Js";
 
 	var titulo="Community Standup";
+    
+    return {
+        Titulo:function(){
+            return titulo + nombreDePresentacion;
+        }
+    }
+})
+
+angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope','ServicioTituloDeHeader',function($scope,servicioTituloDeHeader){
 
 	$scope.titulo=function(){
-		return titulo + nombreDePresentacion;
+		return servicioTituloDeHeader.Titulo();
 	}
 
 }]);
