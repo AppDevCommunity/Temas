@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body ng-app='StandupApp'>
+
+    <div ng-view>
+
+    </div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+<script>
+
+//Configuracion de módulos de la aplicación StandUpApp
+
+angular.module('Dependencia1',[]);
+
+angular.module('Dependencia2',[]);
+
+angular.module('StandupApp',['Dependencia1','Dependencia2','ngRoute']);
+
+angular.module('StandupApp').config(function($routeProvider){
+    $routeProvider
+    .when('/vista1',{
+        templateUrl:'vista1.html',
+        controller:'ControladorHeaderCommunityStandup'
+    })
+    .when('/vista2',{
+        templateUrl:'vista2.html',
+        controller:'ControladorHeaderCommunityStandup2'
+    }).
+    otherwise('/vista1');
+})
+
+//Header 1
+
+angular.module('StandupApp').factory('ServicioTituloDeHeader',function(){
+    
+    var nombreDePresentacion=" Angular Js";
+
+	var titulo="Community Standup";
+    
+    return {
+        Titulo:function(){
+            return titulo + nombreDePresentacion;
+        }   
+    } 
+})
+
+
+angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope','ServicioTituloDeHeader',function($scope,servicioTituloDeHeader){
+
+	$scope.titulo=function(){
+		return servicioTituloDeHeader.Titulo();
+	}
+
+}]);
+
+
+angular.module('StandupApp').directive('communityStandupHeader',function(){
+	return {
+			restrict:'EACM',
+			template:"<h1>{{titulo()}}</h1>"
+	}
+});
+
+//Header 2
+
+angular.module('StandupApp').factory('ServicioTituloDeHeader2',function(){
+    
+    var nombreDePresentacion=" Angular Js";
+
+	var titulo="Community Standup 2";
+    
+    return {
+        Titulo:function(){
+            return titulo + nombreDePresentacion;
+        }   
+    } 
+})
+
+
+angular.module('StandupApp').controller('ControladorHeaderCommunityStandup2',['$scope','ServicioTituloDeHeader2',function($scope,servicioTituloDeHeader){
+
+	$scope.titulo=function(){
+		return servicioTituloDeHeader.Titulo();
+	}
+
+}]);
+
+
+angular.module('StandupApp').directive('communityStandupHeader2',function(){
+	return {
+			restrict:'EACM',
+			template:"<h1>{{titulo()}}</h1>"
+	}
+});
+
+</script>
+
+</html>
