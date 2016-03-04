@@ -6,11 +6,15 @@
 
 <body ng-app='StandupApp'>
 
-<community-standup-header titulo="Community Standup Angular Js"></community-standup-header>
+<div ng-controller="ControladorHeaderCommunityStandup">
+
+	<h1>{{titulo}}</h1>
+
+</div>
 
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js">
 
 </script>
 
@@ -22,13 +26,16 @@ angular.module('Dependencia2',[]);
 
 angular.module('StandupApp',['Dependencia1','Dependencia2']);
 
+angular.module('StandupApp').controller('ControladorHeaderCommunityStandup',['$scope',function($scope){
+
+	$scope.titulo="Community Standup Angular Js";
+
+}]);
+
 angular.module('StandupApp').directive('communityStandupHeader',function(){
 	return {
 			restrict:'EACM',
-			template:"<h1>{{titulo}}</h1>",
-            scope:{
-                titulo:'@'
-            }
+			template:"<h1>{{titulo}}</h1>"
 	}
 });
 
